@@ -65,7 +65,7 @@ class Controller {
 
     Categoria(req, res) {
         try {
-            const classificacao = req.params.classificacao
+            const classificacao = req.body.classificacao
 
             res.send({ classificacao })
         } catch (error) {

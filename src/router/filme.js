@@ -8,6 +8,6 @@ router.post("/buscarUm/:id", Controller.BuscarUm)
 router.post("/criar", Controller.Criar)
 router.put("/alterar/:id", Controller.Alterar)
 router.delete("/deletar/:id", Controller.Deletar)
-router.post("/categoria", Controller.Categoria)
+router.post("/categoria/:classificacao", Controller.Categoria)
 
 export default router
