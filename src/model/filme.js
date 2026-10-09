@@ -1,7 +1,7 @@
 const filmes = new Array(
-    {Titulo: "Hobbies", Classificaçao: 16, Descriçao: "Filme de aventura", Ano: 2008 },
-    {Titulo: "Valozes e Furiosos 10", Classificaçao: 18, Descriçao: "Filme de Açao e corridas ilegais", Ano: 2025 },
-    {Titulo: "Carros", Classificaçao: 10, Descriçao: "Historia em animaçao de um corredor", Ano: 2006 }
+    {Titulo: "Hobbies", Classificacao: 16, Descricao: "Filme de aventura", Ano: 2008 },
+    {Titulo: "Valozes e Furiosos 10", Classificacao: 18, Descricao: "Filme de Açao e corridas ilegais", Ano: 2025 },
+    {Titulo: "Carros", Classificacao: 10, Descricao: "Historia em animaçao de um corredor", Ano: 2006 }
 )
 
 class filme {
@@ -11,17 +11,20 @@ class filme {
     }
 
     BuscarUm(id) {
+        if (id < 0 || id >= filmes.length) {
+            throw new Error("ID inválido");
+        }
         return filmes[id]
     }
 
     Criar(titulo, classificacao, descricao, ano) {
-        filmes.push({ Titulo: titulo, Classificaçao: classificacao, Descriçao: descricao, Ano: ano })
+        filmes.push({ Titulo: titulo, Classificacao: classificacao, Descricao: descricao, Ano: ano })
     }
 
     Alterar(id, titulo, classificacao, descricao, ano) {
         filmes[id].Titulo = titulo
-        filmes[id].Classificaçao = classificacao
-        filmes[id].Descriçao = descricao
+        filmes[id].Classificacao = classificacao
+        filmes[id].Descricao = descricao
         filmes[id].Ano = ano
     }
 
@@ -30,7 +33,13 @@ class filme {
     }
 
     Categoria(classificacao) {
-        return filmes[classificacao]
+        return filmes.filter(filme => filme.Classificacao === classificacao)
+    }
+
+    Lancamento(id) {
+        const filme = filmes[id]
+        const anoAtual = new Date().getFullYear()
+        return filme.Ano === anoAtual
     }
 }
 

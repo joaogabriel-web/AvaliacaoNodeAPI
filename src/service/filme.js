@@ -7,7 +7,7 @@ class Service {
     }
 
     BuscarUm(id) {
-        if (!id || isNaN(id)) {
+        if (!id || id < 0 || id >= filme.Buscar().length) {
             throw new Error("ID inválido");
         }
         return filme.BuscarUm(id);
@@ -33,7 +33,20 @@ class Service {
         }
         filme.Deletar(id);
     }
-    
+
+    Categoria(classificacao) {
+        if (!classificacao || isNaN(classificacao)) {
+            throw new Error("Classificação inválida");
+        }
+        return filme.Categoria(classificacao);
+    }
+
+    Lancamento(id) {
+        if (!id || isNaN(id)) {
+            throw new Error("ID inválido");
+        }
+        return filme.Lancamento(id);
+    }
 }
 
 export default new Service()

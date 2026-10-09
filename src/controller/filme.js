@@ -26,7 +26,7 @@ class Controller {
     Criar(req, res) {
         try {
             const titulo = req.body.Titulo
-            const classificacao = req.body.Classificaçao
+            const classificacao = req.body.Classificacao
             const descricao = req.body.Descricao
             const ano = req.body.Ano
             Service.Criar(titulo, classificacao, descricao, ano);
@@ -41,7 +41,7 @@ class Controller {
         try {
             const id =  req.params.id
             const titulo = req.body.Titulo
-            const classificacao = req.body.Classificaçao
+            const classificacao = req.body.Classificacao
             const descricao = req.body.Descricao
             const ano = req.body.Ano
             Service.Alterar(id, titulo, classificacao, descricao, ano);
@@ -65,9 +65,20 @@ class Controller {
 
     Categoria(req, res) {
         try {
-            const classificacao = req.body.classificacao
+            const classificacao = req.params.classificacao
+            const filmes = Service.Categoria(classificacao)
 
-            res.send({ classificacao })
+            res.send({ filmes })
+        } catch (error) {
+            res.send({ error: error.message });
+        }
+    }
+
+    Lancamento(req, res) {
+        try {
+            const id = req.params.id
+            const lancamento = Service.Lancamento(id)
+            res.send({ lancamento })
         } catch (error) {
             res.send({ error: error.message });
         }
